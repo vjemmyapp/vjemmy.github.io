@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+VJ EMMY MOVIES APP | Home
+</title>
+
+<meta
+name="description"
+content="Watch the latest Movies and TV Series on VJ EMMY MOVIES APP">
+
+<meta
+name="theme-color"
+content="#16a34a">
+
+<meta
+http-equiv="X-UA-Compatible"
+content="IE=edge">
+
+<link
+rel="icon"
+type="image/png"
+href="images/logo.png">
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+<style>
+
+:root{
+
+--primary:#16a34a;
+--primary-dark:#128038;
+
+--bg:#050505;
+--card:#121212;
+
+--card2:#1b1b1b;
+
+--text:#ffffff;
+--text2:#d1d5db;
+
+--border:#2f2f2f;
+
+--danger:#dc2626;
+
+--radius:18px;
+
+}
+
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:"Poppins",sans-serif;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+background:var(--bg);
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+/* ==========================
+SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#101010;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--primary);
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#22c55e;
+
+}
+
+/* ==========================
+HEADER
+========================== */
+
+header{
+
+position:sticky;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+z-index:1000;
+
+background:#0a0a0a;
+
+border-bottom:1px solid #1f1f1f;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:15px 35px;
+
+}
+
+.logo{
+
+font-size:30px;
+
+font-weight:800;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+color:#22c55e;
+
+text-shadow:0 0 10px rgba(34,197,94,.35);
+
+}
+
+.logo span{
+
+color:#ffffff;
+
+}
+
+/* ==========================
+NAVIGATION
+========================== */
+
+nav{
+
+display:flex;
+
+gap:15px;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+}
+
+.nav-btn{
+
+padding:10px 18px;
+
+border-radius:30px;
+
+border:none;
+
+background:#181818;
+
+color:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+font-size:14px;
+
+font-weight:600;
+
+}
+
+.nav-btn:hover{
+
+background:var(--primary);
+
+transform:translateY(-2px);
+
+}
+
+.subscribe-btn{
+
+background:#eab308;
+
+color:black;
+
+font-weight:bold;
+
+}
+
+.subscribe-btn:hover{
+
+background:#facc15;
+
+}
+
+/* ==========================
+SEARCH
+========================== */
+
+.search-area{
+
+padding:25px;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.search-box{
+
+width:100%;
+
+max-width:800px;
+
+position:relative;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:18px 20px 18px 55px;
+
+background:#161616;
+
+border:none;
+
+border-radius:50px;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+.search-box i{
+
+position:absolute;
+
+left:22px;
+
+top:19px;
+
+color:#aaa;
+
+font-size:18px;
+
+}
+
+/* ==========================
+HERO
+========================== */
+
+.hero{
+
+margin:25px;
+
+height:460px;
+
+border-radius:25px;
+
+overflow:hidden;
+
+position:relative;
+
+background:#222;
+
+background-size:cover;
+
+background-position:center;
+
+display:flex;
+
+align-items:flex-end;
+
+}
+
+.hero-overlay{
+
+width:100%;
+
+padding:45px;
+
+background:
+
+linear-gradient(
+
+transparent,
+
+rgba(0,0,0,.95)
+
+);
+
+}
+
+.hero-title{
+
+font-size:42px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.hero-description{
+
+color:#ddd;
+
+max-width:700px;
+
+line-height:1.7;
+
+margin-bottom:20px;
+
+}
+
+.hero button{
+
+padding:14px 30px;
+
+border:none;
+
+border-radius:40px;
+
+background:var(--primary);
+
+color:white;
+
+font-size:17px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.hero button:hover{
+
+background:var(--primary-dark);
+
+}
+
+/* ==========================
+SECTION
+========================== */
+
+.section{
+
+padding:10px 25px 35px;
+
+}
+
+.section-title{
+
+font-size:26px;
+
+font-weight:700;
+
+margin-bottom:20px;
+
+}
+
+/* ==========================
+GRID
+========================== */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fill,minmax(190px,1fr));
+
+gap:22px;
+
+}
+
+/* ==========================
+CARD
+========================== */
+
+.card{
+
+background:var(--card);
+
+border-radius:18px;
+
+overflow:hidden;
+
+cursor:pointer;
+
+transition:.35s;
+
+border:1px solid var(--border);
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.45);
+
+}
+
+.poster{
+
+width:100%;
+
+height:285px;
+
+object-fit:cover;
+
+display:block;
+
+background:#202020;
+
+}
+
+.card-body{
+
+padding:15px;
+
+}
+
+.title{
+
+font-size:13px;
+
+font-weight:600;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+}
+
+.meta{
+
+margin-top:8px;
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:11px;
+
+color:#bdbdbd;
+
+}
+
+/* ==========================
+BADGES
+========================== */
+
+.badge{
+
+display:inline-block;
+
+padding:4px 10px;
+
+border-radius:20px;
+
+font-size:12px;
+
+font-weight:bold;
+
+margin-right:5px;
+
+margin-top:10px;
+
+}
+
+.movie{
+
+background:#2563eb;
+
+}
+
+.series{
+
+background:#9333ea;
+
+}
+
+.premium{
+
+background:#f59e0b;
+
+color:black;
+
+}
+
+.featured{
+
+background:#16a34a;
+
+}
+
+/* ==========================
+LOADING
+========================== */
+
+.skeleton{
+
+height:350px;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#1a1a1a,
+
+#2b2b2b,
+
+#1a1a1a
+
+);
+
+background-size:400% 100%;
+
+animation:loading 1.2s infinite;
+
+}
+
+@keyframes loading{
+
+0%{
+
+background-position:100%;
+
+}
+
+100%{
+
+background-position:-100%;
+
+}
+
+}
+
+/* ==========================
+EMPTY
+========================== */
+
+.empty{
+
+text-align:center;
+
+padding:80px 20px;
+
+color:#888;
+
+font-size:22px;
+
+}
+
+/* ==========================
+FOOTER
+========================== */
+
+footer{
+
+margin-top:40px;
+
+padding:25px;
+
+background:#0c0c0c;
+
+text-align:center;
+
+color:#777;
+
+border-top:1px solid #222;
+
+}
+
+/* ==========================
+MOBILE
+========================== */
+
+@media(max-width:500px){
+
+.grid{
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px;
+
+}
+
+.hero{
+
+height:350px;
+
+margin:15px;
+
+}
+
+.hero-title{
+
+font-size:30px;
+
+}
+
+.hero-description{
+
+font-size:14px;
+
+}
+
+.grid{
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:500px){
+
+
+.logo{
+
+font-size:22px;
+
+}
+
+.nav-btn{
+
+font-size:13px;
+
+padding:9px 14px;
+
+}
+
+.search-box input{
+
+font-size:14px;
+
+}
+
+
+.grid{
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+gap:15px;
+
+}
+
+
+.poster{
+
+height:220px;
+
+}
+
+.hero{
+
+height:280px;
+
+}
+
+.hero-title{
+
+font-size:24px;
+
+}
+
+.section-title{
+
+font-size:22px;
+
+}
+.badge{
+
+font-size:10px;
+
+padding:3px 7px;
+
+margin-top:6px;
+
+}
+
+}
+
+</style>
+<body>
+
+<!-- ==========================================
+HEADER
+=========================================== -->
+
+<header>
+
+<div>
+
+<div class="logo">
+
+VJ <span>EMMY</span>
+
+</div>
+
+<div style="font-size:12px;color:#9ca3af;letter-spacing:2px;">
+
+STREAM • WATCH • ENJOY
+
+</div>
+
+</div>
+
+<nav>
+
+<button
+class="nav-btn"
+id="allBtn">
+
+<i class="fa-solid fa-house"></i>
+
+All
+
+</button>
+
+<button
+class="nav-btn"
+id="moviesBtn">
+
+<i class="fa-solid fa-film"></i>
+
+Movies
+
+</button>
+
+<button
+class="nav-btn"
+id="seriesBtn">
+
+<i class="fa-solid fa-tv"></i>
+
+Series
+
+</button>
+
+<button
+class="nav-btn"
+onclick="window.location.href='my_account.html'">
+
+<i class="fa-solid fa-user"></i>
+
+My Account
+
+</button>
+
+<button
+class="nav-btn subscribe-btn"
+id="subscribeBtn"
+onclick="window.location.href='subscribe.html'">
+
+<i class="fa-solid fa-crown"></i>
+
+Subscribe
+
+</button>
+
+</nav>
+
+</header>
+
+
+
+
+
+<!-- ==========================================
+SEARCH
+=========================================== -->
+
+<section class="search-area">
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+
+type="text"
+
+id="searchInput"
+
+placeholder="Search movies and TV series...">
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ==========================================
+WELCOME
+=========================================== -->
+
+<section
+style="
+padding:0 25px 20px;
+">
+
+<h2
+id="welcomeText"
+style="
+font-weight:600;
+">
+
+Loading...
+
+</h2>
+
+<p
+style="
+color:#a1a1aa;
+margin-top:8px;
+">
+
+Welcome to VJ EMMY — Your home for the latest movies and TV series.
+
+</p>
+
+</section>
+
+
+
+
+
+<!-- ==========================================
+FEATURED HERO
+=========================================== -->
+
+<section
+class="hero"
+
+id="hero"
+
+style="display:none;">
+
+<div class="hero-overlay">
+
+<div
+class="hero-title"
+
+id="heroTitle">
+
+</div>
+
+<div
+class="hero-description"
+
+id="heroDescription">
+
+</div>
+
+<button
+id="heroButton">
+
+Watch Now
+
+</button>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ==========================================
+LATEST CONTENT
+=========================================== -->
+
+<section class="section">
+
+<h2
+class="section-title">
+
+Latest Releases
+
+</h2>
+
+<div
+
+class="grid"
+
+id="contentGrid">
+
+
+
+<!-- Skeleton -->
+
+<div class="skeleton"></div>
+
+<div class="skeleton"></div>
+
+<div class="skeleton"></div>
+
+<div class="skeleton"></div>
+
+<div class="skeleton"></div>
+
+<div class="skeleton"></div>
+
+<div class="skeleton"></div>
+
+<div class="skeleton"></div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ==========================================
+EMPTY RESULTS
+=========================================== -->
+
+<div
+
+id="emptyMessage"
+
+class="empty"
+
+style="display:none;">
+
+<i
+class="fa-solid fa-face-frown"
+style="font-size:50px;margin-bottom:20px;">
+</i>
+
+<br><br>
+
+No movies or TV series found.
+
+</div>
+
+
+
+
+
+<!-- ==========================================
+BACK TO TOP
+=========================================== -->
+
+<button
+
+id="topButton"
+
+style="
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:#16a34a;
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+display:none;
+
+z-index:999;
+
+">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+
+
+
+
+<!-- ==========================================
+FOOTER
+=========================================== -->
+
+<footer>
+
+<div
+style="
+font-size:20px;
+font-weight:700;
+color:#16a34a;
+">
+
+VJ EMMY MOVIES
+
+</div>
+
+<div
+style="
+margin-top:12px;
+">
+
+Unlimited Entertainment.
+
+Movies.
+
+Series.
+
+Anytime.
+
+</div>
+
+<div
+style="
+margin-top:20px;
+font-size:13px;
+">
+
+© 2026 VJ EMMY MOVIES
+
+ All Rights Reserved.
+
+</div>
+
+</footer>
+
+
+<!-- Supabase Library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+
+  <script>
+
+// =======================================
+// SUPABASE
+// =======================================
+
+const SUPABASE_URL =
+"https://rjjsdqikvtzhnpmdouir.supabase.co";
+
+const SUPABASE_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqanNkcWlrdnR6aG5wbWRvdWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5NzAxMDAsImV4cCI6MjA5ODU0NjEwMH0.sbeeCa8LVYGzPzT5mm06eZeQfjrRdFgbsUjqoR2K7tk";
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+// =======================================
+// GLOBAL VARIABLES
+// =======================================
+
+let currentUser = null;
+
+let isPremium = false;
+
+let allContent = [];
+
+let filteredContent = [];
+
+
+
+
+// =======================================
+// GET HTML ELEMENTS
+// =======================================
+
+const grid =
+document.getElementById("contentGrid");
+
+const hero =
+document.getElementById("hero");
+
+const heroTitle =
+document.getElementById("heroTitle");
+
+const heroDescription =
+document.getElementById("heroDescription");
+
+const heroButton =
+document.getElementById("heroButton");
+
+const welcomeText =
+document.getElementById("welcomeText");
+
+const searchInput =
+document.getElementById("searchInput");
+
+const subscribeBtn =
+document.getElementById("subscribeBtn");
+
+const emptyMessage =
+document.getElementById("emptyMessage");
+
+const topButton =
+document.getElementById("topButton");
+
+
+
+
+// =======================================
+// LOGIN PROTECTION
+// =======================================
+
+if(
+localStorage.getItem("loggedIn")!="true"
+){
+
+window.location.href="auth.html";
+
+}
+
+
+
+
+// =======================================
+// LOAD EVERYTHING
+// =======================================
+
+initialize();
+
+async function initialize(){
+
+await loadProfile();
+
+await loadMoviesAndSeries();
+
+renderHero();
+
+renderCards(allContent);
+
+}
+
+
+
+
+// =======================================
+// LOAD PROFILE
+// =======================================
+
+async function loadProfile(){
+
+const userID =
+localStorage.getItem("user_id");
+
+const {
+
+data,
+
+error
+
+}
+
+=
+
+await supabaseClient
+
+.from("profiles")
+
+.select("*")
+
+.eq(
+"id",
+userID
+)
+
+.single();
+
+if(error || !data){
+
+localStorage.clear();
+
+window.location.href="auth.html";
+
+return;
+
+}
+
+currentUser =
+data;
+
+
+
+
+// =======================================
+// ACCOUNT STATUS
+// =======================================
+
+if(
+
+data.account_status !=
+"active"
+
+){
+
+alert(
+
+"Your account is currently unavailable."
+
+);
+
+localStorage.clear();
+
+window.location.href="auth.html";
+
+return;
+
+}
+
+
+
+
+// =======================================
+// PREMIUM CHECK
+// =======================================
+
+isPremium =
+
+data.paid_status === true;
+
+
+
+
+// Hide subscribe button
+
+if(isPremium){
+
+subscribeBtn.style.display="none";
+
+}
+
+
+
+
+// Welcome text
+
+welcomeText.innerHTML =
+
+"Welcome back, "
+
++
+
+"<span style='color:#16a34a'>"
+
++
+
+data.name
+
++
+
+"</span>";
+
+}
+
+
+
+
+// =======================================
+// LOAD MOVIES + SERIES
+// =======================================
+
+async function loadMoviesAndSeries(){
+
+const [
+
+movieResult,
+
+seriesResult
+
+]
+
+=
+
+await Promise.all([
+
+
+supabaseClient
+
+.from("movies")
+
+.select("*"),
+
+
+supabaseClient
+
+.from("series")
+
+.select("*")
+
+
+]);
+
+
+
+
+// =======================================
+// CHECK ERRORS
+// =======================================
+
+if(
+
+movieResult.error ||
+
+seriesResult.error
+
+){
+
+grid.innerHTML=
+
+"<div class='empty'>Unable to load content.</div>";
+
+return;
+
+}
+
+
+
+
+// =======================================
+// ADD CONTENT TYPE
+// =======================================
+
+const movies =
+
+movieResult.data.map(
+
+movie=>({
+
+...movie,
+
+contentType:"movie"
+
+})
+
+);
+
+
+
+const series =
+
+seriesResult.data.map(
+
+show=>({
+
+...show,
+
+contentType:"series"
+
+})
+
+);
+
+
+
+
+// =======================================
+// MERGE
+// =======================================
+
+allContent =
+
+[
+
+...movies,
+
+...series
+
+];
+
+
+
+
+// =======================================
+// SORT NEWEST FIRST
+// =======================================
+
+allContent.sort(
+
+(a,b)=>
+
+new Date(
+
+b.created_at
+
+)
+
+-
+
+new Date(
+
+a.created_at)
+
+);
+
+}
+
+// =======================================
+// HERO
+// =======================================
+
+function renderHero(){
+
+const featured =
+
+allContent.find(
+
+item=>item.featured
+
+);
+
+if(!featured){
+
+hero.style.display="none";
+
+return;
+
+}
+
+hero.style.display="flex";
+
+hero.style.backgroundImage=
+
+`url(${featured.banner_url || featured.poster_url})`;
+
+heroTitle.innerHTML=
+
+featured.title;
+
+heroDescription.innerHTML=
+
+featured.description ||
+"No description available.";
+
+heroButton.onclick=function(){
+
+openContent(featured);
+
+};
+
+}
+
+
+
+
+// =======================================
+// CARDS
+// =======================================
+
+function renderCards(content){
+
+filteredContent=content;
+
+grid.innerHTML="";
+
+if(content.length==0){
+
+emptyMessage.style.display="block";
+
+return;
+
+}
+
+emptyMessage.style.display="none";
+
+content.forEach(item=>{
+
+const card=
+
+document.createElement("div");
+
+card.className="card";
+
+card.onclick=function(){
+
+openContent(item);
+
+};
+
+card.innerHTML=`
+
+<img
+
+class="poster"
+
+src="${item.poster_url}"
+
+loading="lazy"
+
+onerror="this.src='images/no-poster.jpg'"
+
+>
+
+<div class="card-body">
+
+<div class="title">
+
+${item.title}
+
+</div>
+
+<div class="meta">
+
+<span>
+
+${item.release_year || ""}
+
+</span>
+
+<span>
+
+${item.language || ""}
+
+</span>
+
+</div>
+
+<div>
+
+<span class="badge ${item.contentType}">
+
+${item.contentType=="movie"
+
+?
+
+"Movie"
+
+:
+
+"Series"}
+
+</span>
+
+${
+
+item.premium
+
+?
+
+'<span class="badge premium">Premium</span>'
+
+:
+
+''
+
+}
+
+${
+
+item.featured
+
+?
+
+'<span class="badge featured">Featured</span>'
+
+:
+
+''
+
+}
+
+</div>
+
+</div>
+
+`;
+
+grid.appendChild(card);
+
+});
+
+}
+
+
+
+
+// =======================================
+// CARD CLICK
+// =======================================
+
+function openContent(item){
+
+if(!isPremium){
+
+window.location.href=
+
+"subscribe.html";
+
+return;
+
+}
+
+if(
+
+item.contentType=="movie"
+
+){
+
+window.location.href=
+
+"movie-details.html?id="+
+
+item.id;
+
+}else{
+
+window.location.href=
+
+"series-details.html?id="+
+
+item.id;
+
+}
+
+}
+
+
+
+
+// =======================================
+// SEARCH
+// =======================================
+
+searchInput.addEventListener(
+
+"keyup",
+
+function(){
+
+const value=
+
+this.value
+
+.toLowerCase()
+
+.trim();
+
+if(value==""){
+
+renderCards(allContent);
+
+return;
+
+}
+
+const results=
+
+allContent.filter(item=>
+
+item.title
+
+.toLowerCase()
+
+.includes(value)
+
+||
+
+(item.description || "")
+
+.toLowerCase()
+
+.includes(value)
+
+);
+
+renderCards(results);
+
+}
+
+);
+
+
+
+
+// =======================================
+// FILTERS
+// =======================================
+
+document
+
+.getElementById("allBtn")
+
+.onclick=function(){
+
+renderCards(allContent);
+
+};
+
+
+
+
+
+document
+
+.getElementById("moviesBtn")
+
+.onclick=function(){
+
+renderCards(
+
+allContent.filter(
+
+x=>
+
+x.contentType=="movie"
+
+)
+
+);
+
+};
+
+
+
+
+
+document
+
+.getElementById("seriesBtn")
+
+.onclick=function(){
+
+renderCards(
+
+allContent.filter(
+
+x=>
+
+x.contentType=="series"
+
+)
+
+);
+
+};
+
+
+
+
+// =======================================
+// BACK TO TOP
+// =======================================
+
+window.onscroll=function(){
+
+if(
+
+document.documentElement.scrollTop>
+
+500
+
+){
+
+topButton.style.display="block";
+
+}else{
+
+topButton.style.display="none";
+
+}
+
+};
+
+
+
+
+
+topButton.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+
+
+
+// =======================================
+// REFRESH EVERY 60 SECONDS
+// =======================================
+
+setInterval(
+
+async()=>{
+
+await loadMoviesAndSeries();
+
+renderHero();
+
+renderCards(filteredContent.length
+
+?
+
+filteredContent
+
+:
+
+allContent);
+
+},
+
+60000
+
+);
+
+</script>
+
+</body>
+
+</html>
+
+
