@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VJ EMMY - Subscription</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Poppins",sans-serif;
+}
+
+:root{
+
+--primary:#22c55e;
+--primary-dark:#16a34a;
+
+--background:#050505;
+--surface:#111111;
+
+--card:#171717;
+
+--border:#262626;
+
+--text:#ffffff;
+
+--muted:#9ca3af;
+
+}
+
+body{
+
+background:
+linear-gradient(180deg,#06110b,#050505);
+
+color:var(--text);
+
+padding:20px;
+
+}
+
+.header{
+
+text-align:center;
+
+margin-bottom:35px;
+
+}
+
+.logo{
+
+width:90px;
+
+height:90px;
+
+border-radius:24px;
+
+box-shadow:0 10px 35px rgba(34,197,94,.25);
+
+margin-bottom:15px;
+
+}
+
+h1{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+color:var(--muted);
+
+line-height:1.8;
+
+font-size:15px;
+
+}
+
+.package{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:20px;
+
+padding:24px;
+
+margin-bottom:22px;
+
+transition:.35s;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.package:hover{
+
+transform:translateY(-6px);
+
+border-color:var(--primary);
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.45);
+
+}
+
+.package.active{
+
+border:2px solid var(--primary);
+
+box-shadow:
+
+0 0 25px rgba(34,197,94,.25);
+
+}
+
+.package::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+right:0;
+
+height:5px;
+
+background:var(--primary);
+
+}
+
+.plan{
+
+font-size:24px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.price{
+
+font-size:38px;
+
+font-weight:700;
+
+color:var(--primary);
+
+margin-bottom:12px;
+
+}
+
+.price span{
+
+font-size:15px;
+
+color:var(--muted);
+
+}
+
+.features{
+
+margin-top:20px;
+
+}
+
+.features div{
+
+padding:8px 0;
+
+color:#d4d4d4;
+
+font-size:15px;
+
+border-bottom:1px solid #202020;
+
+}
+
+.features div:last-child{
+
+border-bottom:none;
+
+}
+
+.plan-btn{
+
+width:100%;
+
+margin-top:22px;
+
+height:52px;
+
+border:none;
+
+border-radius:14px;
+
+background:var(--primary);
+
+color:white;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.plan-btn:hover{
+
+background:var(--primary-dark);
+
+transform:translateY(-2px);
+
+}
+
+.payment{
+
+margin-top:35px;
+
+background:#111;
+
+border:1px solid #222;
+
+border-radius:20px;
+
+padding:25px;
+
+text-align:center;
+
+}
+
+.payment i{
+
+font-size:48px;
+
+color:var(--primary);
+
+margin-bottom:15px;
+
+}
+
+.payment h3{
+
+margin-bottom:10px;
+
+}
+
+.note{
+
+margin-top:12px;
+
+font-size:14px;
+
+color:var(--muted);
+
+}
+
+.toast{
+
+position:fixed;
+
+left:50%;
+
+bottom:30px;
+
+transform:translateX(-50%) translateY(120px);
+
+background:#22c55e;
+
+color:white;
+
+padding:14px 24px;
+
+border-radius:40px;
+
+font-weight:600;
+
+opacity:0;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.toast.show{
+
+opacity:1;
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+@media(min-width:900px){
+
+body{
+
+max-width:1100px;
+
+margin:auto;
+
+}
+
+.package{
+
+display:grid;
+
+grid-template-columns:1fr auto;
+
+gap:30px;
+
+align-items:center;
+
+}
+
+.plan-btn{
+
+width:220px;
+
+margin-top:0;
+
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+
+<img src="https://i.ibb.co/C5q5mXD1/logo.png" class="logo">
+
+<h1>Choose Your Plan</h1>
+
+<p class="subtitle">
+
+Unlimited movies and TV series.<br>
+
+Watch anywhere. Cancel anytime.
+
+</p>
+
+</div>
+
+<div class="package active" data-price="10000">
+
+<div class="plan">
+
+1 Month
+
+</div>
+
+<div class="price">
+
+10000 UGX
+
+</div>
+
+<div class="features">
+
+<div>✔ Unlimited Movies</div>
+
+<div>✔ Unlimited Series</div>
+
+<div>✔ Mobile & Desktop Access</div>
+<button
+class="plan-btn"
+onclick="choosePlan('1 Month',10000)">
+
+Pay monthly
+
+</button>
+
+</div>
+
+</div>
+
+<div class="package" data-price="18000">
+
+<div class="plan">
+
+2 Months
+
+</div>
+
+<div class="price">
+
+18000 UGX
+
+</div>
+
+<div class="features">
+
+<div>✔ Unlimited Movies</div>
+
+<div>✔ Unlimited Series</div>
+
+<div>✔ HD Streaming</div>
+
+<div>✔ Save 2000 UGX</div>
+
+</div>
+<button
+class="plan-btn"
+onclick="choosePlan('2 Months',18000)">
+
+Pay for 2 months
+
+</button>
+
+</div>
+
+<div class="package" data-price="45000">
+
+<div class="plan">
+
+6 Months
+
+</div>
+
+<div class="price">
+
+45000
+
+</div>
+
+<div class="features">
+
+<div>✔ Unlimited Movies</div>
+
+<div>✔ Unlimited Series</div>
+
+<div>✔ HD Streaming</div>
+
+<div>✔ Great Value</div>
+
+</div>
+<button
+class="plan-btn"
+onclick="choosePlan('6 Months',45000)">
+
+Pay for 6 months
+
+</button>
+
+</div>
+
+<div class="package" data-price="80000">
+
+<div class="plan">
+
+12 Months
+
+</div>
+
+<div class="price">
+
+80000 UGX
+
+</div>
+
+<div class="features">
+
+<div>✔ Unlimited Movies</div>
+
+<div>✔ Unlimited Series</div>
+
+<div>✔ HD Streaming</div>
+
+<div>✔ Best Value</div>
+
+</div>
+<button
+class="plan-btn"
+onclick="choosePlan('6 Months',80000)">
+
+Pay for a year
+</button>
+</div>
+
+
+<div class="payment">
+
+<i class="fas fa-mobile-alt"></i>
+
+<h3>Pay with Mobile Money</h3>
+
+<p>
+
+Secure payments using your local Mobile Money service.
+
+</p>
+
+<div class="note">
+
+Airtel/MTN integration will be connected later.
+
+</div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+let selectedPrice=350;
+
+document.querySelectorAll(".package").forEach(card=>{
+
+card.onclick=()=>{
+
+document.querySelectorAll(".package").forEach(c=>{
+
+c.classList.remove("active");
+
+});
+
+card.classList.add("active");
+
+selectedPrice=card.dataset.price;
+
+};
+
+});
+
+function toast(message){
+
+const t=document.getElementById("toast");
+
+t.textContent=message;
+
+t.classList.add("show");
+
+setTimeout(()=>{
+
+t.classList.remove("show");
+
+},2500);
+
+function choosePlan(plan,price){
+
+toast("Opening checkout...");
+
+setTimeout(()=>{
+
+location.href=
+`checkout.html?plan=${encodeURIComponent(plan)}&amount=${price}`;
+
+},500);
+
+};
+
+</script>
+
+</body>
+</html>
+
+
