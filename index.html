@@ -990,13 +990,13 @@ if(userID){
 
     .from("profiles")
 
-    .select("paid_status,package_expiry,subscription_plan")
+.select("membership,package_expiry,subscription_plan")
 
     .eq("id",userID)
 
     .single();
 
-    if(user && user.paid_status){
+if(user && user.membership === "premium"){
 
         let premium = false;
 
