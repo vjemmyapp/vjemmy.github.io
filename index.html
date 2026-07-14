@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VJ EMMY | Unlimited Entertainment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#090909;
+color:#fff;
+overflow-x:hidden;
+padding-bottom:90px;
+}
+
+/* ===========================
+SPLASH SCREEN
+=========================== */
+
+#splash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999999;
+transition:1s;
+}
+
+#splash.hide{
+opacity:0;
+visibility:hidden;
+}
+
+.splash-logo{
+width:180px;
+animation:zoomLogo 1.5s infinite alternate;
+}
+
+.loading-box{
+width:220px;
+height:6px;
+background:#222;
+margin-top:30px;
+border-radius:30px;
+overflow:hidden;
+}
+
+.loading-bar{
+height:100%;
+width:0%;
+background:#e50914;
+animation:loading 2.8s linear forwards;
+}
+
+@keyframes loading{
+
+0%{width:0%;}
+
+100%{width:100%;}
+
+}
+
+@keyframes zoomLogo{
+
+0%{
+transform:scale(.9);
+opacity:.8;
+}
+
+100%{
+transform:scale(1.05);
+opacity:1;
+}
+
+}
+
+/* ===========================
+HEADER
+=========================== */
+
+header{
+
+position:fixed;
+top:0;
+left:0;
+right:0;
+
+display:flex;
+align-items:center;
+gap:14px;
+
+padding:12px 15px;
+
+background:rgba(0,0,0,.88);
+backdrop-filter:blur(12px);
+
+z-index:999;
+
+box-shadow:0 5px 20px rgba(0,0,0,.45);
+
+}
+
+.logo{
+
+height:60px;
+width:auto;
+
+}
+
+.search{
+
+flex:1;
+
+}
+
+.search input{
+
+width:100%;
+
+height:46px;
+
+border:none;
+
+outline:none;
+
+padding:0 18px;
+
+border-radius:30px;
+
+background:#1d1d1d;
+
+color:white;
+
+font-size:15px;
+
+transition:.35s;
+
+}
+
+.search input:focus{
+
+background:#292929;
+
+box-shadow:0 0 0 2px #e50914;
+
+}
+
+/* ===========================
+HERO
+=========================== */
+
+.hero{
+
+margin-top:86px;
+
+height:230px;
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+.slider{
+
+display:flex;
+
+height:100%;
+
+transition:1s ease;
+
+}
+
+.slide{
+
+min-width:100%;
+
+position:relative;
+
+}
+
+.slide img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+.slide::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+rgba(0,0,0,.15),
+
+rgba(0,0,0,.75)
+
+);
+
+}
+
+.hero-text{
+
+position:absolute;
+
+left:20px;
+
+bottom:22px;
+
+z-index:5;
+
+}
+
+.hero-text h1{
+
+font-size:28px;
+
+font-weight:700;
+
+}
+
+.hero-text p{
+
+font-size:13px;
+
+margin-top:4px;
+
+color:#ddd;
+
+}
+
+/* ===========================
+SECTION
+=========================== */
+
+.section{
+
+padding:20px 14px;
+
+}
+
+.section-title{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:15px;
+
+}
+
+.section-title h2{
+
+font-size:19px;
+
+font-weight:600;
+
+}
+
+.section-title a{
+
+text-decoration:none;
+
+color:#e50914;
+
+font-size:13px;
+
+}
+
+/* ===========================
+GRID
+=========================== */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px;
+
+}
+
+.card{
+
+background:#171717;
+
+border-radius:10px;
+
+overflow:hidden;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 10px 20px rgba(0,0,0,.45);
+
+}
+
+.card img{
+
+width:100%;
+
+aspect-ratio:2/3;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+.card-info{
+
+padding:8px;
+
+}
+
+.card-title{
+
+font-size:12px;
+
+font-weight:600;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+}
+
+.card-sub{
+
+margin-top:3px;
+
+font-size:10px;
+
+color:#aaa;
+
+}
+
+/* ===========================
+SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+width:4px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#e50914;
+
+border-radius:30px;
+
+}
+
+/* ===========================
+BOTTOM NAVIGATION
+=========================== */
+
+footer{
+
+position:fixed;
+
+left:0;
+
+bottom:0;
+
+width:100%;
+
+height:68px;
+
+background:#111;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+box-shadow:0 -4px 18px rgba(0,0,0,.45);
+
+z-index:999;
+
+}
+
+footer a{
+
+color:white;
+
+text-decoration:none;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+font-size:11px;
+
+transition:.3s;
+
+}
+
+footer a:hover{
+
+color:#e50914;
+
+}
+
+footer i{
+
+font-size:22px;
+
+margin-bottom:4px;
+
+}
+
+.subscribe-btn{
+background:transparent;
+padding:0;
+border-radius:0;
+font-size:11px;
+font-weight:400;
+display:flex;
+flex-direction:column;
+align-items:center;
+color:#fff;
+transition:.3s;
+}
+
+.subscribe-btn:hover{
+color:#e50914;
+}
+/* ===========================
+ANIMATIONS
+=========================== */
+
+.fadeUp{
+
+animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(min-width:700px){
+
+.hero{
+
+height:360px;
+
+}
+
+.grid{
+
+grid-template-columns:repeat(5,1fr);
+
+}
+
+.logo{
+
+height:65px;
+
+}
+
+.search input{
+
+height:48px;
+
+font-size:16px;
+
+}
+
+}
+
+@media(min-width:1100px){
+
+.grid{
+
+grid-template-columns:repeat(7,1fr);
+
+}
+
+.hero{
+
+height:470px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ===========================
+SPLASH SCREEN
+=========================== -->
+
+<div id="splash">
+
+    <img
+        src="https://i.ibb.co/qMzM74Vy/logo.png"
+        class="splash-logo"
+        alt="DJ STAR MOVIES">
+
+    <div class="loading-box">
+        <div class="loading-bar"></div>
+    </div>
+
+</div>
+
+<!-- ===========================
+HEADER
+=========================== -->
+
+<header>
+
+    <img
+        src="https://i.ibb.co/qMzM74Vy/logo.png"
+        class="logo"
+        alt="DJ STAR MOVIES">
+
+    <div class="search">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search movies & series...">
+    </div>
+
+</header>
+
+<!-- ===========================
+HERO SLIDER
+=========================== -->
+
+<section class="hero">
+
+    <div class="slider" id="slider">
+
+ 
+    <div class="hero-text fadeUp">
+        <h1>VJ EMMY MOVIES</h1>
+        <p>Home of VJ EMMY Movies & Series</p>
+    </div>
+
+</section>
+
+<!-- ===========================
+TRENDING NOW
+=========================== -->
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>🔥 Trending Now</h2>
+<a href="#" id="viewAllMovies">View All</a>
+    </div>
+
+    <div class="grid" id="movieGrid">
+
+        <div class="card">
+            <img src="https://img.buzzfeed.com/buzzfeed-static/static/2020-10/26/17/asset/bb8104eafde8/sub-buzz-213-1603731688-17.jpg?downsize=900:*&output-format=auto&output-quality=auto">
+            <div class="card-info">
+                <div class="card-title">Fright Night</div>
+                <div class="card-sub">Action</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxiSmf-zNdhMWKv9eH7V49-qZP3MATGPQJZBOVE4s91w&s">
+            <div class="card-info">
+                <div class="card-title">Ganapath</div>
+                <div class="card-sub">Action</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3ptJd8FKDd5HRPU8ems7KK783UqrHH2WX7uXL0-vBDpaHYl17_z9e05y2&s=10">
+            <div class="card-info">
+                <div class="card-title">The Furies</div>
+                <div class="card-sub">Horror</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1U_HEzHxECIP4XhNoKG8FC2bLdgK0yLcdY3qdEK5YIw&s=10">
+            <div class="card-info">
+                <div class="card-title">Srimanthudu</div>
+                <div class="card-sub">Action</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq3HSs_PlXy_ydDg_dCP3jahenKJEnxC_W4BFcoCjETw&s=10">
+            <div class="card-info">
+                <div class="card-title">Drag mr to Hell</div>
+                <div class="card-sub">Horror</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbqc8f2PO0l_7JZgrNrsTg22a796nCbRoxhxXh-_aoTg&s=10">
+            <div class="card-info">
+                <div class="card-title">Bimbisara</div>
+                <div class="card-sub">Action</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+LATEST SERIES
+=========================== -->
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>📺 Latest Series</h2>
+<a href="#" id="viewAllSeries">View All</a>
+    </div>
+
+    <div class="grid" id="seriesGrid">
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrTAKYQIB39tr4vlbD0AijgqX64jNjz74g6-oWQXWHIA&s=10">
+            <div class="card-info">
+                <div class="card-title">Squid Game</div>
+                <div class="card-sub">Season 2</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEyNb07LoSj26Zgck6zG2DQtFIn31CcFuQxrO1wAp6Uw&s=10">
+            <div class="card-info">
+                <div class="card-title">Money Heist</div>
+                <div class="card-sub">Series</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-uzkyDukqJ_CcrzA-Dgd1SBKT0yl21YTCAE09dCqudg&s=10">
+            <div class="card-info">
+                <div class="card-title">The witcher</div>
+                <div class="card-sub">Series</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFZ_r0RbOYvNvAZWjx7lyxp-ByL45ezR2LozKCn1BOAA&s=10">
+            <div class="card-info">
+                <div class="card-title">Perfume</div>
+                <div class="card-sub">Season 4</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpHwFjhj5lHMxAPc6i4x7_9ZDPNxPGi98dTpkOPrHhwkoF9vOHAVMDTxA&s=10">
+            <div class="card-info">
+                <div class="card-title">Diplomat</div>
+                <div class="card-sub">Action</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjSapn7zE2oj5obQhqiZAixeMSy8gG6Dc82T93SCNIOtCcmDkIYlfZnfgG&s=10">
+            <div class="card-info">
+                <div class="card-title">Lively vs Baldoni</div>
+                <div class="card-sub">Romance</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================
+FOOTER
+=========================== -->
+
+<footer>
+
+    <a href="series.html">
+        <i>📺</i>
+        <span>Series</span>
+    </a>
+
+    <a href="movies.html">
+        <i>🎬</i>
+        <span>Movies</span>
+    </a>
+
+    <a href="#" id="accountBtn">
+        <i>👤</i>
+        <span>Account</span>
+    </a>
+
+<a href="subscribe.html" class="subscribe-btn">
+    <i>💎</i>
+    <span>Subscribe</span>
+</a>
+
+</footer>
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+    "https://rjjsdqikvtzhnpmdouir.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqanNkcWlrdnR6aG5wbWRvdWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5NzAxMDAsImV4cCI6MjA5ODU0NjEwMH0.sbeeCa8LVYGzPzT5mm06eZeQfjrRdFgbsUjqoR2K7tk"
+);
+
+// Make available to the existing script
+window.db = supabase;
+
+document.dispatchEvent(new Event("supabaseReady"));
+
+</script>
+<script>
+// ===============================
+// SPLASH SCREEN
+// ===============================
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+        document.getElementById("splash").classList.add("hide");
+    }, 2800);
+
+});
+
+// ===============================
+// HERO SLIDER
+// ===============================
+
+const slider = document.getElementById("slider");
+const slides = document.querySelectorAll(".slide");
+
+let currentSlide = 0;
+
+function autoSlide(){
+
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+        currentSlide = 0;
+    }
+
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+}
+
+setInterval(autoSlide, 4000);
+
+// ===============================
+// LIVE SEARCH
+// ===============================
+
+const searchInput=document.getElementById("searchInput");
+
+searchInput.addEventListener("keydown",function(e){
+
+    if(localStorage.getItem("loggedIn")==="true"){
+        return;
+    }
+
+    e.preventDefault();
+
+    const msg=document.createElement("div");
+
+    msg.innerHTML="🔒 Please login first to search movies and series.";
+
+    msg.style.position="fixed";
+    msg.style.left="50%";
+    msg.style.bottom="95px";
+    msg.style.transform="translateX(-50%)";
+    msg.style.background="#1b1b1b";
+    msg.style.color="#fff";
+    msg.style.padding="14px 20px";
+    msg.style.borderRadius="30px";
+    msg.style.boxShadow="0 10px 30px rgba(0,0,0,.45)";
+    msg.style.zIndex="99999";
+    msg.style.fontSize="14px";
+
+    document.body.appendChild(msg);
+
+    setTimeout(()=>{
+
+        msg.remove();
+
+        location.href="auth.html";
+
+    },1700);
+
+});
+
+// ===============================
+// ACCOUNT BUTTON
+// ===============================
+
+document.getElementById("accountBtn").addEventListener("click",function(e){
+
+    e.preventDefault();
+
+    if(localStorage.getItem("loggedIn") === "true"){
+
+        window.location.href="my_account.html";
+
+    }else{
+
+        window.location.href="auth.html";
+
+    }
+
+});
+
+// ===============================
+// CARD ANIMATION ON SCROLL
+// ===============================
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("fadeUp");
+
+        }
+
+    });
+
+},{
+    threshold:0.15
+});
+
+document.querySelectorAll(".card").forEach(card=>{
+
+    observer.observe(card);
+
+});
+
+// ===============================
+// HEADER SHADOW ON SCROLL
+// ===============================
+
+window.addEventListener("scroll",()=>{
+
+    const header=document.querySelector("header");
+
+    if(window.scrollY>20){
+
+        header.style.background="rgba(0,0,0,.96)";
+        header.style.boxShadow="0 8px 20px rgba(0,0,0,.6)";
+
+    }else{
+
+        header.style.background="rgba(0,0,0,.88)";
+        header.style.boxShadow="0 5px 20px rgba(0,0,0,.45)";
+
+    }
+
+});
+// ===============================
+// LOGIN REQUIRED FOR VIEW ALL
+// ===============================
+
+document.getElementById("viewAllMovies").addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    if(localStorage.getItem("loggedIn") === "true"){
+
+        window.location.href = "movies.html";
+
+    }else{
+
+        window.location.href = "auth.html";
+
+    }
+
+});
+
+document.getElementById("viewAllSeries").addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    if(localStorage.getItem("loggedIn") === "true"){
+
+        window.location.href = "series.html";
+
+    }else{
+
+        window.location.href = "auth.html";
+
+    }
+
+});
+// ===============================
+// LOAD DATA FROM SUPABASE
+// ===============================
+
+document.addEventListener("supabaseReady",async()=>{
+
+const db=window.db;
+
+
+// ===================================
+// PREMIUM CHECK
+// ===================================
+
+const userID = localStorage.getItem("user_id");
+
+if(userID){
+
+    const { data:user } = await db
+
+    .from("profiles")
+
+    .select("paid_status,package_expiry,subscription_plan")
+
+    .eq("id",userID)
+
+    .single();
+
+    if(user && user.paid_status){
+
+        let premium = false;
+
+        if(user.subscription_plan === "Lifetime"){
+
+            premium = true;
+
+        }else if(user.package_expiry){
+
+            premium =
+
+            new Date(user.package_expiry) >
+
+            new Date();
+
+        }
+
+        if(premium){
+
+            window.location.href = "home.html";
+
+            return;
+
+        }
+
+    }
+
+}
+const {data:movies}=await db
+.from("movies")
+.select("id,title,banner_url")
+.not("banner_url","is",null)
+.order("created_at",{ascending:false})
+.limit(5);
+
+const {data:series}=await db
+.from("series")
+.select("id,title,banner_url")
+.not("banner_url","is",null)
+.order("created_at",{ascending:false})
+.limit(5);
+
+const hero=[
+...(movies||[]),
+...(series||[])
+];
+
+if(hero.length===0)return;
+
+slider.innerHTML="";
+
+hero.forEach(item=>{
+
+slider.innerHTML+=`
+
+<div class="slide">
+<img src="${item.banner_url}" alt="${item.title}">
+</div>
+
+`;
+
+});
+
+const slides=document.querySelectorAll(".slide");
+
+currentSlide=0;
+
+clearInterval(window.heroTimer);
+
+window.heroTimer=setInterval(()=>{
+
+currentSlide++;
+
+if(currentSlide>=slides.length){
+
+currentSlide=0;
+
+}
+
+slider.style.transform=
+`translateX(-${currentSlide*100}%)`;
+
+},4000);
+
+});
+
+</script>
+
+</body>
+</html>
