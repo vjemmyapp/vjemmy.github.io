@@ -3,7 +3,7 @@
 
 <head>
 
-<title>My DJStar Account</title>
+<title>VJ EMMY MOVIES</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -465,9 +465,9 @@ Membership
 
 <div class="value">
 
-${data.paid_status ? 
-"Premium Member" :
-"Free Account"}
+${data.membership === "premium"
+? "Premium Member"
+: "Free Account"}
 
 </div>
 
@@ -476,7 +476,7 @@ ${data.paid_status ?
 
 
 ${
-data.paid_status ?
+data.membership === "premium" ?
 
 `
 
