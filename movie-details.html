@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VJ Emmy Movies - Watch now</title>
+
+<style>
+body{
+
+margin:0;
+
+background:#050505;
+
+color:#ffffff;
+
+font-family:"Poppins",sans-serif;
+
+background-image:
+radial-gradient(circle at top,#0d1b12 0%,#050505 60%);
+
+}
+  
+
+.header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 22px;
+
+background:rgba(10,10,10,.75);
+
+backdrop-filter:blur(16px);
+
+border-bottom:1px solid #222;
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+}
+
+.logo{
+
+font-size:24px;
+
+font-weight:700;
+
+color:#22c55e;
+
+letter-spacing:1px;
+
+}
+
+.tagline{
+
+font-size:13px;
+
+color:#9ca3af;
+
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.player{
+
+width:100%;
+
+aspect-ratio:16/9;
+
+background:#000;
+
+border-radius:18px;
+
+overflow:hidden;
+
+border:1px solid #1f1f1f;
+
+box-shadow:
+
+0 20px 45px rgba(0,0,0,.55);
+
+}
+  .player iframe,
+.player video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+.poster {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+
+.playOverlay {
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:60px;
+  cursor:pointer;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.2)
+  );
+  backdrop-filter:blur(2px);
+  transition:.25s;
+}
+
+.playOverlay:hover{
+  background:rgba(0,0,0,.45);
+}
+
+.meta {
+  padding: 15px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.desc {
+  margin-top: 10px;
+  color: #ccc;
+}
+
+.views {
+  margin-top: 10px;
+  color: #aaa;
+}
+
+
+.actions{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+gap:12px;
+margin-top:20px;
+}
+
+button{
+
+height:48px;
+
+border:none;
+
+border-radius:14px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+font-size:15px;
+
+}
+
+/* ▶ Watch */
+#watchBtn {
+  background:linear-gradient(135deg,#fbbf24,#d97706);
+  color:#000;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+
+#watchBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
+}
+
+/* 🔗 Share */
+#shareBtn {
+  background: #1f2937;
+  color: #fff;
+  border: 1px solid #374151;
+}
+
+#shareBtn:hover {
+  background:#111;
+  border:1px solid #333;
+  transform: translateY(-2px);
+}
+
+/* 🎞 Trailer */
+#trailerBtn {
+   background:#18181b;
+  color:#fbbf24;
+   border:1px solid #fbbf24;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+}
+
+#trailerBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.6);
+}
+
+.similar {
+  margin-top: 30px;
+  padding: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+  gap: 10px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.badge{
+  background:#1a1a1a;
+  color:#fbbf24;
+  border:1px solid rgba(251,191,36,.3);
+}
+
+.badge {
+  background: #1f2937;
+  color: #22c55e;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.commentsBox {
+  margin-top: 40px;
+  background: #111827;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.commentForm input,
+.commentForm textarea {
+  background: #1f2937;
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.commentForm textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.commentItem {
+  margin-top: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #222;
+}
+
+.commentUser {
+  font-weight: bold;
+  color: #22c55e;
+}
+#favoriteBtn{
+
+background:#dc2626;
+color:white;
+
+}
+
+#favoriteBtn:hover{
+
+background:#b91c1c;
+
+}
+
+.commentDate {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.commentText {
+  margin-top: 10px;
+  color: #ddd;
+}
+#fullBtn {
+  background: #111827;
+  color: white;
+  border: 1px solid #374151;
+}
+
+#fullBtn:hover {
+  background: #374151;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="logo">
+
+🎬 VJ EMMY
+
+</div>
+
+<div class="tagline">
+
+Unlimited Entertainment
+
+</div>
+
+</div>
+
+<div class="container">
+
+  <div class="player" id="player"></div>
+
+<div class="meta">
+
+  <div class="title" id="title">Loading...</div>
+
+  <div class="badges">
+    <span class="badge" id="genre"></span>
+    <span class="badge" id="duration"></span>
+  </div>
+
+  <div class="desc" id="desc"></div>
+
+  <div class="views" id="views"></div>
+
+</div>
+<div class="actions">
+
+<button id="watchBtn">
+Watch
+</button>
+
+<button id="trailerBtn">
+Trailer
+</button>
+
+<button id="shareBtn">
+Share
+</button>
+
+<button id="favoriteBtn">
+❤ Favourite
+</button>
+
+<button id="fullBtn">
+⛶ Fullscreen
+</button>
+
+
+</div>
+
+<!-- COMMENTS SECTION -->
+<div class="commentsBox">
+
+  <h3>Comments</h3>
+
+  <button id="openCommentBox">
+    Write a comment
+  </button>
+
+  <div class="commentForm" id="commentForm" style="display:none;">
+    <textarea id="commentText" placeholder="Write comment..."></textarea>
+    <button id="postComment">Post Comment</button>
+  </div>
+
+  <div id="commentsList"></div>
+
+</div>
+
+  <div class="similar">
+    <h3>Similar Movies</h3>
+    <div class="grid" id="similar"></div>
+  </div>
+
+</div>
+
+<script type="module">
+
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+const supabase = createClient(
+    "https://rjjsdqikvtzhnpmdouir.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqanNkcWlrdnR6aG5wbWRvdWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5NzAxMDAsImV4cCI6MjA5ODU0NjEwMH0.sbeeCa8LVYGzPzT5mm06eZeQfjrRdFgbsUjqoR2K7tk"
+);
+
+
+const params = new URLSearchParams(window.location.search);
+const movieId = params.get("id");
+
+const player = document.getElementById("player");
+const titleEl = document.getElementById("title");
+const descEl = document.getElementById("desc");
+const viewsEl = document.getElementById("views");
+const genreEl = document.getElementById("genre");
+const durationEl = document.getElementById("duration");
+const commentsList = document.getElementById("commentsList");
+const similarEl = document.getElementById("similar");
+let movie = null;
+let isPremium = false;
+
+
+async function loadMovie() {
+
+  const { data } = await supabase
+    .from("movies")
+    .select("*")
+    .eq("id", movieId)
+    .single();
+
+  if (!data) {
+    titleEl.textContent = "Movie not found";
+    return;
+  }
+
+  movie = data;
+
+// Check if logged in user is premium
+const userId = localStorage.getItem("user_id");
+isPremium = false;
+
+if(userId){
+
+const { data: profile } = await supabase
+.from("profiles")
+.select("paid_status, package_expiry")
+.eq("id", userId)
+.single();
+
+if(profile){
+
+const expiry = new Date(profile.package_expiry);
+
+isPremium =
+profile.paid_status === true &&
+expiry > new Date();
+
+}
+
+}
+
+// Block premium movie
+
+
+  titleEl.textContent = data.title;
+
+ descEl.textContent = data.synopsis || "No description";
+
+  viewsEl.textContent = (data.views || 0) + " views";
+  genreEl.textContent = data.genre || "Unknown";
+durationEl.textContent = data.duration || "N/A";
+
+ showPoster(
+  data.banner_url || data.poster_url,
+  data.video_url
+);
+
+
+  loadSimilar(data.id);
+  loadComments(data.id);
+}
+
+// 🎬 Poster preload
+function showPoster(poster, videoUrl) {
+
+  player.innerHTML = `
+    <img src="${poster}" class="poster">
+    <div class="playOverlay">▶</div>
+  `;
+
+  player.onclick = () => {
+    renderPlayer(videoUrl);
+  };
+}
+
+// 🎬 Player switch
+function renderPlayer(url) {
+
+  if (url.includes("youtube") || url.includes("youtu.be")) {
+    const id = url.match(/(?:v=|youtu\.be\/)([^&]+)/)?.[1];
+    player.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>`;
+  }
+
+  else if (url.includes("vimeo")) {
+    const id = url.split("/").pop();
+    player.innerHTML = `<iframe src="https://player.vimeo.com/video/${id}" allowfullscreen></iframe>`;
+  }
+
+  else if (url.includes("drive.google.com")) {
+    const id = url.match(/\/d\/(.*?)\//)?.[1];
+    player.innerHTML = `<iframe src="https://drive.google.com/file/d/${id}/preview" allowfullscreen></iframe>`;
+  }
+
+  else {
+    player.innerHTML = `<video controls autoplay src="${url}"></video>`;
+  }
+}
+
+// 🎞 Similar movies (SMART + PROTECTED)
+async function loadSimilar(currentId) {
+try {
+
+
+    // 1️⃣ Get current movie genre
+    const { data: current, error: currentError } = await supabase
+      .from("movies")
+      .select("genre")
+      .eq("id", currentId)
+      .single();
+
+    if (currentError || !current) {
+      console.error("Current movie fetch error:", currentError);
+      return;
+    }
+
+    // 2️⃣ Base query (same genre)
+    let query = supabase
+      .from("movies")
+      .select("*")
+      .neq("id", currentId)
+      .eq("genre", current.genre);
+
+    // 🔒 Filter premium
+    if (!isPremium) {
+     query = query.eq("premium", false);
+    }
+
+    let { data, error } = await query.limit(8);
+
+    if (error) {
+      console.error("Similar error:", error);
+      return;
+    }
+
+    // 3️⃣ Fallback if not enough results
+    if (!data || data.length < 4) {
+
+      let fallbackQuery = supabase
+        .from("movies")
+        .select("*")
+        .neq("id", currentId);
+
+      if (!isPremium) {
+    fallbackQuery = fallbackQuery.eq("premium", false);
+      }
+
+      const { data: fallback, error: fallbackError } = await fallbackQuery.limit(8);
+
+      if (fallbackError) {
+        console.error("Fallback error:", fallbackError);
+        return;
+      }
+
+      data = fallback;
+    }
+
+    // 4️⃣ Render
+    similarEl.innerHTML = data.map(m => `
+      <div class="card">
+        <img src="${m.poster_url}" onclick="location.href='?id=${m.id}'">
+      </div>
+    `).join("");
+
+ } catch (err) {
+  console.error("Crash in loadSimilar:", err);
+}
+
+} // ← CLOSE loadSimilar HERE
+
+async function loadComments(movieId) {
+
+const { data } = await supabase
+.from("movies_comments")
+.select(`
+    comment,
+    created_at,
+    profiles(username)
+`)
+.eq("movie_id", movieId)
+.order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  commentsList.innerHTML = data.map(c => `
+    <div class="commentItem">
+      <div class="commentUser">${c.user_name}</div>
+      <div class="commentDate">
+        ${new Date(c.created_at).toLocaleString()}
+      </div>
+      <div class="commentText">${c.comment}</div>
+    </div>
+  `).join("");
+}
+// 🔗 SHARE SITE (FIXED)
+document.getElementById("shareBtn").onclick = () => {
+
+  const siteURL = "https://rb.gy/kq79d3"; // 👈 CHANGE THIS
+
+const text =
+`🎬 Watch movies and series translated into Luganda by VJ EMMY
+
+🔥 Stream now:
+${siteURL}`;
+
+window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+};
+ document.getElementById("favoriteBtn").onclick = () => {
+
+let favourites = JSON.parse(
+localStorage.getItem("favourites") || "[]"
+);
+
+const exists = favourites.find(m => m.id === movie.id);
+
+if(exists){
+
+showToast("Already in favourites.");
+return;
+
+}
+
+favourites.push({
+
+id: movie.id,
+title: movie.title,
+poster: movie.poster_url,
+premium: movie.premium
+
+});
+
+localStorage.setItem(
+"favourites",
+JSON.stringify(favourites)
+);
+
+showToast("Added to favourites ❤️");
+
+}; 
+
+// 🎞 Trailer
+document.getElementById("trailerBtn").onclick = () => {
+
+if (!movie || !movie.trailer_url) {
+location.href = "subscribe.html";
+    return;
+  }
+
+  renderPlayer(movie.trailer_url);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  
+};
+document.getElementById("postComment").onclick = async () => {
+
+  const username = document.getElementById("username").value.trim();
+  const comment = document.getElementById("commentText").value.trim();
+
+  if (!username || !comment) return;
+
+const { error } = await supabase
+  .from("movies_comments")
+.insert([{
+    movie_id: movie.id,
+    user_id: userId,
+    comment
+}]);
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  document.getElementById("commentText").value = "";
+
+  loadComments(movie.id);
+};
+
+// ▶ Watch (FIXED)
+document.getElementById("watchBtn").onclick = async () => {
+
+    if(!movie) return;
+
+    if(movie.premium && !isPremium){
+        location.href="subscribe.html";
+        return;
+    }
+
+    await supabase
+        .from("movies")
+        .update({
+            views:(movie.views||0)+1
+        })
+        .eq("id",movie.id);
+  movie.views = (movie.views || 0) + 1;
+viewsEl.textContent = movie.views + " views";
+
+    renderPlayer(movie.video_url);
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+};
+document.getElementById("fullBtn").onclick = () => {
+  const el = document.getElementById("player");
+
+  if (!document.fullscreenElement) {
+    if (el.requestFullscreen) el.requestFullscreen();
+    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+    else if (el.msRequestFullscreen) el.msRequestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+};
+
+function showToast(message){
+
+const toast=document.createElement("div");
+
+toast.textContent=message;
+
+toast.style.position="fixed";
+toast.style.left="50%";
+toast.style.bottom="35px";
+toast.style.transform="translateX(-50%)";
+toast.style.background="#16a34a";
+toast.style.color="#fff";
+toast.style.padding="14px 22px";
+toast.style.borderRadius="40px";
+toast.style.fontWeight="600";
+toast.style.boxShadow="0 15px 35px rgba(0,0,0,.35)";
+toast.style.zIndex="999999";
+toast.style.opacity="0";
+toast.style.transition=".3s";
+
+document.body.appendChild(toast);
+
+requestAnimationFrame(()=>{
+toast.style.opacity="1";
+});
+
+setTimeout(()=>{
+
+toast.style.opacity="0";
+
+setTimeout(()=>{
+toast.remove();
+},300);
+
+},2200);
+
+}
+loadMovie().then(() => {
+
+  const openBtn = document.getElementById("openCommentBox");
+  const form = document.getElementById("commentForm");
+
+  openBtn.addEventListener("click", () => {
+    if (!form) return;
+
+    form.style.display =
+      form.style.display === "none" ? "flex" : "none";
+  });
+});
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+
+</body>
+</html>
