@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>My DJStar Account</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #111827,
+        #064e3b
+    );
+
+}
+
+.account-card{
+
+    width:100%;
+    max-width:460px;
+
+    background:#ffffff;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,.45);
+
+    animation:fadeIn .4s ease;
+
+}
+
+.logo{
+
+    background:
+    linear-gradient(
+        135deg,
+        #16a34a,
+        #22c55e
+    );
+
+    color:white;
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+}
+
+#content{
+
+    padding:25px;
+
+}
+
+.loading{
+
+    text-align:center;
+
+    color:#666;
+
+    padding:40px 0;
+
+    font-size:18px;
+
+}
+
+.profile-item{
+
+    background:#f8fafc;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:16px;
+
+    transition:.25s;
+
+}
+
+.profile-item:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.label{
+
+    font-size:12px;
+
+    color:#6b7280;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:6px;
+
+}
+
+.value{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#111827;
+
+    word-break:break-word;
+
+}
+
+.status{
+
+    color:#16a34a;
+
+}
+
+.home-btn{
+
+    width:calc(100% - 50px);
+
+    margin:0 25px 15px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#16a34a;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.home-btn:hover{
+
+    background:#15803d;
+
+    transform:translateY(-2px);
+
+}
+
+.logout-btn{
+
+    display:block;
+
+    width:100%;
+
+    background:none;
+
+    border:none;
+
+    color:#888;
+
+    padding:20px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+}
+
+.logout-btn:hover{
+
+    color:#dc2626;
+
+    text-decoration:underline;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .account-card{
+
+        border-radius:20px;
+
+    }
+
+    .logo{
+
+        font-size:24px;
+
+        padding:28px 15px;
+
+    }
+
+    .value{
+
+        font-size:18px;
+
+    }
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<div class="account-card">
+
+
+<div class="logo">
+DJ STAR MOVIES
+</div>
+
+
+<div id="content">
+
+<div class="loading">
+
+Loading account...
+
+</div>
+
+</div>
+
+
+
+<button class="home-btn" onclick="goHome()">
+🏠 GO TO HOME
+</button>
+
+
+<button class="logout-btn" onclick="logout()">
+Logout
+</button>
+
+
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+
+// ================================
+// SUPABASE
+// ================================
+
+
+const SUPABASE_URL =
+"https://emcqalzhpupzsjbkopqq.supabase.co";
+
+
+const SUPABASE_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVtY3FhbHpocHVwenNqYmtvcHFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwMDEyOTQsImV4cCI6MjA5OTU3NzI5NH0.navfP_lYl3-vi9hk0yUPGUbnoOHPPP_Mk8K4mgwrDoU";
+
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+
+
+
+// ================================
+// LOAD ACCOUNT
+// ================================
+
+
+async function loadAccount(){
+
+
+
+let userID =
+localStorage.getItem("user_id");
+
+
+
+if(!userID){
+
+
+window.location.href="auth.html";
+
+return;
+
+}
+
+
+
+
+const {
+
+data,
+
+error
+
+}=
+
+await supabaseClient
+
+.from("profiles")
+
+.select("*")
+
+.eq("id", userID)
+
+.single();
+
+
+
+
+
+if(error || !data){
+
+
+document.getElementById("content").innerHTML=
+
+"Account not found";
+
+
+return;
+
+}
+
+
+
+
+
+document.getElementById("content").innerHTML=`
+
+<div class="profile-item">
+
+<div class="label">
+Name
+</div>
+
+<div class="value">
+${data.name}
+</div>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<div class="label">
+WhatsApp Number
+</div>
+
+<div class="value">
+${data.whatsapp_number}
+</div>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<div class="label">
+Account Status
+</div>
+
+<div class="value status">
+${data.account_status}
+</div>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<div class="label">
+Subscription
+</div>
+
+<div class="value">
+${data.subscription_plan}
+</div>
+
+</div>
+
+
+
+<div class="profile-item">
+
+<div class="label">
+Membership
+</div>
+
+<div class="value">
+
+${data.paid_status ? 
+"Premium Member" :
+"Free Account"}
+
+</div>
+
+</div>
+
+
+
+${
+data.paid_status ?
+
+`
+
+<div class="profile-item">
+
+<div class="label">
+Package Expiry
+</div>
+
+<div class="value">
+
+${
+data.package_expiry
+?
+
+new Date(data.package_expiry).toLocaleDateString()
+
+:
+
+"Lifetime"
+}
+
+</div>
+
+</div>
+
+`
+
+:
+
+`
+
+<div class="profile-item">
+
+<div class="label">
+Joined
+</div>
+
+<div class="value">
+
+${new Date(data.created_at).toLocaleDateString()}
+
+</div>
+
+</div>
+
+`
+
+}
+</div>
+
+</div>
+
+`;
+
+
+
+}
+
+
+
+
+// ================================
+// LOGOUT
+// ================================
+
+
+function logout(){
+
+
+localStorage.removeItem("loggedIn");
+
+localStorage.removeItem("user_id");
+
+
+window.location.href="auth.html";
+
+
+}
+
+
+
+function goHome(){
+
+    window.location.href = "home.html";
+
+}
+loadAccount();
+
+
+</script>
+
+
+
+</body>
+
+</html>
