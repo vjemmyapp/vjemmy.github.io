@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loading...</title>
+</head>
+<body>
+<p>Signing you in...</p>
+
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js"
+
+const supabase = createClient(
+  "https://rjjsdqikvtzhnpmdouir.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqanNkcWlrdnR6aG5wbWRvdWlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5NzAxMDAsImV4cCI6MjA5ODU0NjEwMH0.sbeeCa8LVYGzPzT5mm06eZeQfjrRdFgbsUjqoR2K7tk"
+)
+
+async function handleAuth() {
+
+  const { data } = await supabase.auth.getUser()
+  const user = data.user
+
+  if (!user) {
+    window.location.href = "/login.html"
+    return
+  }
+
+  // Save session locally
+  localStorage.setItem("user_id", user.id)
+
+  // Redirect to subscription check page
+  window.location.href = "/check.html"
+}
+
+handleAuth()
+</script>
+
+</body>
+</html>
